@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.yearContainer {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.year {
+  font-size: 2rem;
+  color: darkred;
+  margin: 0 3px;
+}
+
+.arrows {
+  font-size: 1.7rem;
+  color: #243772;
+  cursor: pointer;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.month-name {
+  text-align: center;
+  font-weight: bold;
+}
+
+.month {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  margin: 25px;
+}
+
+.date,
+.week {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #907e7e;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.week {
+  background-color: #814d49;
+  color: #fff;
+}
+.week5,
+.week6 {
+  /* background-color: dodgerblue; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.date:hover {
+  background-color: #243772;
 }
