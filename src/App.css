@@ -12,25 +12,53 @@ body {
   display: flex;
   justify-content: center;
   height: 100vh;
-  margin: 20px;
   font-family: 'Poppins', sans-serif;
+  background-color: #e0f4f5;
+  position: relative;
+  height: 100%;
+}
+
+.topContainer,
+.yearContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #324b71;
+  width: 100vw;
+  position: sticky;
+  top: 0;
 }
 
 .yearContainer {
-  text-align: center;
-  margin-bottom: 25px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 250px;
 }
 
 .year {
   font-size: 2rem;
-  color: darkred;
-  margin: 0 3px;
+  color: #74cdd2;
+  cursor: pointer;
+  transition: transform 1s ease;
+  animation: yearAnimation 3s ease-in-out 3s 5 alternate-reverse;
 }
 
 .arrows {
   font-size: 1.7rem;
-  color: #243772;
+  color: #db7006;
   cursor: pointer;
+}
+
+.year:hover,
+.arrows:hover {
+  color: #101820ff;
+}
+
+.yearJump {
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
 }
 
 .calendar {
@@ -40,25 +68,43 @@ body {
   justify-content: center;
 }
 
-.month-name {
-  text-align: center;
-  font-weight: bold;
+.month-container {
+  margin: 20px;
 }
 
-.month {
+.monthNameContainer {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.month-mode-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.arrows-month {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.monthDates {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  margin: 25px;
+  /* margin: 25px; */
 }
 
 .date,
-.week {
+.day {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #907e7e;
+  background-color: #f2aa4cff;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -66,15 +112,35 @@ body {
   color: #fff;
 }
 
-.week {
-  background-color: #814d49;
+.day {
+  background-color: #101820ff;
   color: #fff;
-}
-.week5,
-.week6 {
-  /* background-color: dodgerblue; */
 }
 
 .date:hover {
   background-color: #243772;
+}
+
+.current {
+  background-color: #243772;
+}
+
+@keyframes yearAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.3);
+  }
+}
+
+@media (min-width: 660px) {
+  .mode-month .date,
+  .mode-month .day {
+    width: 60px;
+    height: 60px;
+    border-radius: 0;
+    font-size: 1.5rem;
+    color: #fff;
+  }
 }

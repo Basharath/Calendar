@@ -1,6 +1,17 @@
 import React from 'react';
+import MonthMode from './MonthMode';
 
-export default function Month({ year, month }) {
+export default function Month(props) {
+  const {
+    year,
+    month,
+    currentYear,
+    currentMonth,
+    currentDate,
+    mode,
+    handleMonth,
+  } = props;
+
   function getMonth(year, month) {
     const thirtyDayMonths = [4, 6, 9, 11];
     let monthLength = thirtyDayMonths.includes(month) ? 30 : 31;
@@ -43,26 +54,42 @@ export default function Month({ year, month }) {
     return monthNames[month - 1];
   }
   return (
-    <div className="month-container">
-      <div className="month-name">{getMonthName(month)}</div>
-      <div className="month">
-        {weekDays().map((i, j) => (
-          <div key={i} className={'week week' + j}>
-            {i}
-          </div>
-        ))}
-        {getMonth(year, month).map((i) => (
-          <div
-            key={i}
-            className="date"
-            style={{
-              gridColumnStart: i === 1 ? getWeekStart(year, month) : '',
-            }}
-          >
-            {i}
-          </div>
-        ))}
+    <>
+      <div className={'month-container mode-' + mode}>
+        <MonthMode
+          month={month}
+          mode={mode}
+          getMonthName={getMonthName}
+          handleMonth={handleMonth}
+        />
+        <div className="monthDates">
+          {weekDays().map((i, j) => (
+            <div key={i} className={i + ' day'}>
+              {i}
+            </div>
+          ))}
+          {getMonth(year, month).map((i) => {
+            const current =
+              month === currentMonth + 1 &&
+              i === currentDate &&
+              year === currentYear
+                ? ' current'
+                : '';
+
+            return (
+              <div
+                key={i}
+                className={`${getMonthName(month)} ${i} date ${current}`}
+                style={{
+                  gridColumnStart: i === 1 ? getWeekStart(year, month) : '',
+                }}
+              >
+                {i}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
